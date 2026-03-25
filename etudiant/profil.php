@@ -1,0 +1,28 @@
+<?php
+header("Content-Type: application/json");
+include("../config/database.php");
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $id = $_GET['id']; 
+
+    $sql = "SELECT u.nom, u.prenom, u.email, c.nom as classe
+            FROM utilisateurs u
+            JOIN etudiants e ON u.id = e.utilisateur_id
+            JOIN classes c ON e.classe_id = c.id
+            WHERE u.id = $id";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $data = $result->fetch_assoc();
+
+        echo json_encode([
+            "success" => 1,
+            "data" => $data
+        ]);
+    } else {
+        echo json_encode(["success" => 0]);
+    }
+}
+?>
