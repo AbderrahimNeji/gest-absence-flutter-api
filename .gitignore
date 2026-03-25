@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Dependency directories
+vendor/
+node_modules/
+
+# Environment and secrets
+.env
+.env.*
+
+# PHP temp/cache
+*.cache
